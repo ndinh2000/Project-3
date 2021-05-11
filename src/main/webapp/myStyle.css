@@ -1,0 +1,271 @@
+#header img{
+    margin:10px auto 20px;
+    width:auto;
+    display: block;
+}
+#top-nav-bar {
+    text-align: center;
+    font-size: 15px;
+}
+
+#top-nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(95, 93, 93);
+}
+
+#top-nav-bar li {
+    float: left;
+}
+
+#top-nav-bar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+#top-nav-bar li a:hover {
+    background-color: rgb(95, 139, 235);
+}
+
+#top-nav-bar .active {
+    background-color: rgb(95, 139, 235);
+}
+
+
+.formButton{
+    text-align: center;
+}
+
+.featuredPets p{
+    font-size: 18px;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.featuredPets img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.featuredPets{
+    text-align: center;
+}
+
+
+.profile{
+    overflow: hidden;
+    margin:0 auto;
+}
+
+.profile img{
+    width: 100%;
+    transition: 0.5s all ease-in-out;
+}
+
+.profile:hover img{
+    transform:scale(1.5)
+}
+
+input[type=number]{
+    width: 100%;
+}
+
+input[type=text]{
+    width: 100%;
+}
+
+input[type=tel]{
+    width: 100%;
+}
+
+
+#shipping-method{
+    width: 100%;
+}
+
+#expireMM{
+    width: 49%;
+}
+
+#expireYY{
+    width: 49%;
+}
+
+fieldset{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+.formButton{
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.addToCartButton button{
+    text-align:left;
+    margin-left: 40px;
+    padding: 10px;
+    font-size:16px;
+    cursor: pointer;
+}
+
+.addToCartButton button:hover{
+    background-color: rgb(95, 139, 235)
+}
+
+input[type="submit"].formButton:hover
+{
+    border:1px solid black;
+}
+
+legend{
+    font-size: 25px;
+    text-align: center;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 0;
+
+}
+
+img {
+    width: 100%;
+}
+
+.img-container {
+    height: 300px;
+}
+
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+
+@media only screen and (min-width: 0px) {
+    /* /* For desktop: / */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 100%;}
+    .col-3 {width: 100%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 754px) {
+    /* / For desktop: / */
+    /*.col-2{width: 33.33%;}*/
+    .col-3 {width: 50%;}
+    .img-container { height: 600px; }
+}
+
+@media only screen and (min-width: 1100px) {
+    /* / For desktop: / */
+    .col-2{width: 50%;}
+    .col-3 {width: 33.33%;}
+}
+
+@media only screen and (min-width: 1400px) {
+    /* / For desktop: */
+    .col-2{width: 20%;}
+    .col-3 {width: 25%;}
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 6vw;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+.rate-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rate-container > i {
+    color: grey;
+}
+
+.rate-container > i:HOVER,
+.rate-container > i:HOVER ~ i {
+    color: gold;
+}
+
+.rate-container-fixed {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rate-container-fixed > i {
+    color: grey;
+}
