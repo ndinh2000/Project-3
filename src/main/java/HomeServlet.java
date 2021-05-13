@@ -19,12 +19,12 @@ public class HomeServlet extends HttpServlet {
         try {
             getID(req, resp);
 
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
-            Statement stmt = con.createStatement();
-            String sql = "SELECT name, age, gender, price, message, profile_picture FROM petstore.pet";
-            ResultSet rs = stmt.executeQuery(sql);
+//            Class.forName("com.mysql.jdbc.Driver");
+//            Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
+//                    + "petstore", "root", "root");
+//            Statement stmt = con.createStatement();
+//            String sql = "SELECT name, age, gender, price, message, profile_picture FROM petstore.pet";
+//            ResultSet rs = stmt.executeQuery(sql);
 
 
             PrintWriter writer = resp.getWriter();
@@ -57,7 +57,7 @@ public class HomeServlet extends HttpServlet {
             rd = req.getRequestDispatcher(url2);
             rd.include(req, resp);
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
