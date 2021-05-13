@@ -22,7 +22,12 @@
 
 <body>
 <%--<%=getID(request, response)%>--%>
-<div id="header"><h1><img src="./images/Logo/shopLogo.png"></h1></div>
+<div id="header">
+    <h1>
+        <img src="<%=request.getContextPath()%>/images/Logo/shopLogo.png">
+    </h1>
+</div>
+
 <div id = "top-nav-bar">
     <ul>
         <li><a class="active" href=><h3> Home </h3></a></li>
