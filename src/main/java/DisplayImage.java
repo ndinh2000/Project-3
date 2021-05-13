@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  * @author ndinh
  */
 public class DisplayImage extends HttpServlet {
-    
+
 //    public final String imagesBase = "C:\\Users\\ndinh\\Documents\\INF 124 Internet Application Engineering\\Code\\Project 2\\PA2\\pics/";
 
     /**
@@ -37,12 +37,12 @@ public class DisplayImage extends HttpServlet {
         /*
             Important: Put images inside PA2\src\main\webapp\images before building
         */
-        
-        String URLAfterWebDomain = request.getRequestURI();        
-        if(URLAfterWebDomain.startsWith("/PA2/images/") == false)   
+
+        String URLAfterWebDomain = request.getRequestURI();
+        if(URLAfterWebDomain.startsWith("/PA2/images/") == false)
             return;
-        
-        ServletOutputStream out;  
+
+        ServletOutputStream out;
         out = response.getOutputStream();
 
         ServletContext servletContext = request.getSession().getServletContext();
@@ -61,14 +61,14 @@ public class DisplayImage extends HttpServlet {
 //        writer.println(URLAfterWebDomain);
 //        writer.println("<p>asd</p>");
 //        writer.println("</body> </Html> ");
-        
+
         response.setContentType("image/jpeg");
         ServletOutputStream outStream;
         outStream = response.getOutputStream();
         FileInputStream fin = new FileInputStream(base + relativeImagePath);
         BufferedInputStream bin = new BufferedInputStream(fin);
         BufferedOutputStream bout = new BufferedOutputStream(outStream);
-        int ch =0; ;
+        int ch =0;
         while((ch=bin.read())!=-1)
             bout.write(ch);
 

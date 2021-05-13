@@ -109,7 +109,7 @@ public class HandleRating extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
                     + "petstore", "root", "root");
             Statement stmt = con.createStatement();

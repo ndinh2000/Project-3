@@ -43,7 +43,7 @@ public class ProductDetail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String pet_id = request.getParameter("pet_id");
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
                     + "petstore", "root", "root");
             Statement stmt = con.createStatement();
@@ -57,7 +57,8 @@ public class ProductDetail extends HttpServlet {
                     "    <meta charset=\"UTF-8\">\n" +
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                     "    <title>The Pet Shop</title>\n");
-            writer.println("<link rel='stylesheet' type='text/css' href='" + request.getContextPath() +  "/myStyle.css' /></head>");
+            writer.println("<link rel='stylesheet' type='text/css' href='" + request.getContextPath() +  "/myStyle.css' />"+
+                    "<script src='"+request.getContextPath()+"/script.js'></script>"+"</head>");
 
             response.setContentType("text/html;charset=UTF-8");
             String url1 = "/titleHeader";

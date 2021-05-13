@@ -75,28 +75,28 @@
 }
 
 input[type=number]{
-    width: 100%;
+    width: 80%;
 }
 
 input[type=text]{
-    width: 100%;
+    width: 80%;
 }
 
 input[type=tel]{
-    width: 100%;
+    width: 80%;
 }
 
 
 #shipping-method{
-    width: 100%;
+    width: 80%;
 }
 
 #expireMM{
-    width: 49%;
+    width: 40%;
 }
 
 #expireYY{
-    width: 49%;
+    width: 40%;
 }
 
 fieldset{
@@ -144,7 +144,7 @@ body {
 .row {
     text-align: center;
     padding: 20px;
-    padding-bottom: 0;
+    padding-bottom: 0%;
 
 }
 
@@ -191,81 +191,18 @@ img {
 
 @media only screen and (min-width: 754px) {
     /* / For desktop: / */
-    /*.col-2{width: 33.33%;}*/
+    .col-2{width: 33.33%;}
     .col-3 {width: 50%;}
     .img-container { height: 600px; }
 }
 
 @media only screen and (min-width: 1100px) {
     /* / For desktop: / */
-    .col-2{width: 50%;}
     .col-3 {width: 33.33%;}
 }
 
 @media only screen and (min-width: 1400px) {
     /* / For desktop: */
-    .col-2{width: 20%;}
+    .col-2{width: 16.66%;}
     .col-3 {width: 25%;}
-}
-
-.rating {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center
-}
-
-.rating>input {
-    display: none
-}
-
-.rating>label {
-    position: relative;
-    width: 1em;
-    font-size: 6vw;
-    color: #FFD600;
-    cursor: pointer
-}
-
-.rating>label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0
-}
-
-.rating>label:hover:before,
-.rating>label:hover~label:before {
-    opacity: 1 !important
-}
-
-.rating>input:checked~label:before {
-    opacity: 1
-}
-
-.rating:hover>input:checked~label:before {
-    opacity: 0.4
-}
-
-.rate-container{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
-
-.rate-container > i {
-    color: grey;
-}
-
-.rate-container > i:HOVER,
-.rate-container > i:HOVER ~ i {
-    color: gold;
-}
-
-.rate-container-fixed {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
-
-.rate-container-fixed > i {
-    color: grey;
 }

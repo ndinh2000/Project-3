@@ -47,22 +47,22 @@ CREATE TABLE `Pet` (
 # );
 
 CREATE TABLE `Orders`(
-                        `order_id` int NOT NULL AUTO_INCREMENT,
-                        `user_id` int NOT NULL,
-                        `pet_id` varchar(10) NOT NULL,
-                        `qty` int NOT NULL,
-                        `price` float NOT NULL,
-                        `name_first` varchar(50) NOT NULL,
-                        `name_last` varchar(50) NOT NULL,
-                        `email` varchar(100) NOT NULL,
+                         `order_id` int NOT NULL AUTO_INCREMENT,
+                         `user_id` int NOT NULL,
+                         `pet_id` varchar(10) NOT NULL,
+                         `qty` int NOT NULL,
+                         `price` float NOT NULL,
+                         `name_first` varchar(50) NOT NULL,
+                         `name_last` varchar(50) NOT NULL,
+                         `email` varchar(100) NOT NULL,
                          `address_zipcode` varchar(30) NOT NULL,
                          `address_state` varchar(30) NOT NULL,
                          `address` varchar(30) NOT NULL,
                          `card_number` varchar(30) NOT NULL,
                          `expiration_MM` varchar(5) NOT NULL,
-                        `expiration_YY` varchar(5) NOT NULL,
+                         `expiration_YY` varchar(5) NOT NULL,
                          shipping_method enum('ground', 'overnight', 'two_days'),
-                        PRIMARY KEY (`order_id`)
+                         PRIMARY KEY (`order_id`)
 );
 CREATE TABLE `Ratings` (
                            `user_id` int NOT NULL,

@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,13 +6,8 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ndinh
  */
-@WebServlet(urlPatterns = {"/GetRating"})
-public class GetRating extends HttpServlet {
+public class ShowPet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,35 +32,36 @@ public class GetRating extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
+            String dbName = "petstore";
+            String userName = System.getProperty("RDS_USERNAME");
+            String password = System.getProperty("RDS_PASSWORD");
+            String hostname = System.getProperty("RDS_HOSTNAME");
+            String port = System.getProperty("RDS_PORT");
+            String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
+            Connection con = DriverManager.getConnection(jdbcUrl);
             Statement stmt = con.createStatement();
-            String pet_id = request.getParameter("pet_id");
-            String sql = "SELECT rating FROM ratings WHERE pet_id = '" + pet_id + "';";
+
+            String sql = "SELECT name, profile_picture FROM petstore.pet";
             ResultSet rs = stmt.executeQuery(sql);
 
             PrintWriter writer = response.getWriter();
-            int total = 0, count = 0;
+            writer.println("<Html> <body>");
+            String imgPath = "";
             while (rs.next()) {
-                total += rs.getFloat("rating");
-                ++count;
+                writer.println(rs.getString("name"));
+                imgPath = rs.getString("profile_picture");
+                writer.println("</br>");
             }
+//            writer.println("<img src='./images/1.png'>");
+//            writer.println("<img src='./images/cat1.jpg' >");
+            writer.println("<img src='./images/CatImages/cat1.jfif' >");
+//            writer.println("<img src=\"../../../../pics/1.png\">");
+//            writer.println("<img src=\"../../../pics/1.png\">");
+//            writer.println("<img src=\"../../pics/1.png\">");
+//            writer.println("<img src=\"../pics/1.png\">");
+//            writer.println("<img src=\"pics/1.png\">");
 
-            writer.println("<div class=\"rate-container-fixed\" style=\"height:35px; display: flex; flex-direction: row-reverse; justify-content: center;\">");
-            if (count > 0) {
-                int stars = (int) Math.round((double) total / (double) count);
-                for (int i = 5; i > stars; --i) {
-                    writer.println("<i class=\"fa fa-star \" style=\"font-size:24px; padding: 5px; color: grey\"></i>");
-                }
-                for (int i = stars; i > 0; --i) {
-                    writer.println("<i class=\"fa fa-star \" style=\"color: gold; font-size:24px; padding: 5px;\"></i>");
-                }
-            } else {
-                writer.println("No Review Yet");
-            }
-            writer.println("</div>");
-            writer.println("</body> </Html>");
-            stmt.close();
+            writer.println("</body> </Html> ");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

@@ -13,10 +13,16 @@
         <servlet-name>Last5</servlet-name>
         <servlet-class>Last5</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>HomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomePage</servlet-name>
+        <jsp-file>/HomePage.jsp</jsp-file>
+    </servlet>
+
     <servlet>
         <servlet-name>DogsServlet</servlet-name>
         <servlet-class>DogsServlet</servlet-class>
@@ -78,10 +84,16 @@
         <servlet-name>Last5</servlet-name>
         <url-pattern>/Last5</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern>/HomeServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomePage</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>DogsServlet</servlet-name>
         <url-pattern>/DogsServlet</url-pattern>
@@ -113,7 +125,8 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-            index.html
+<!--            index.html-->
+            HomePage.jsp
         </welcome-file>
     </welcome-file-list>
 </web-app>

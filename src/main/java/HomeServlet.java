@@ -13,13 +13,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "HomeServlet", value="/HomeServlet")
 public class HomeServlet extends HttpServlet {
 
-    private static int id = 0;
+    private int id = 0;
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             getID(req, resp);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
                     + "petstore", "root", "root");
             Statement stmt = con.createStatement();
@@ -72,7 +72,7 @@ public class HomeServlet extends HttpServlet {
 
         if (user_id == null) {
             session.setAttribute("user_id", this.id);
-            ++this.id;
+            this.id++;
             heading = "Welcome, New-Comer, your ID is "
                     + session.getAttribute("user_id")
                     + ", nextID is " + this.id;
