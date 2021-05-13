@@ -46,7 +46,7 @@ public class CatsServlet extends HttpServlet {
                     "    <div id=\"header\"><h1><img src=\"./images/Logo/shopLogo.png\"></h1></div>\n" +
                     "    <div id = \"top-nav-bar\">\n" +
                     "        <ul>\n" +
-                    "            <li><a href=./><h3> Home </h3></a></li>\n" +
+                    "            <li><a href=/PA2><h3> Home </h3></a></li>\n" +
                     "            <li><a href=./DogsServlet><h3> Dogs </h3></a></li>\n" +
                     "            <li><a class=\"active\" href=\"./CatsServlet\"><h3> Cats </h3></a></li>\n" +
                     "            <li><a href=./ContactServlet><h3> Contact </h3></a></li>\n" +
