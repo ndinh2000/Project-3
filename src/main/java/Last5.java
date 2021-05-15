@@ -31,9 +31,9 @@ public class Last5 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
+                    + "petstore", "root", "anqizhong1999.");
             Statement stmt = con.createStatement();
             HttpSession session = request.getSession(true);
             String user_id = (session.getAttribute("user_id")).toString();
