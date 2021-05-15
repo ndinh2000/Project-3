@@ -31,16 +31,16 @@ public class OrderDetail extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
+                    + "petstore", "root", "anqizhong1999.");
             HttpSession session = request.getSession(true);
             Integer curID = (Integer)session.getAttribute("user_id");
 
             Statement stmt = con.createStatement();
-            String sql = "SELECT user_id,pet_id,qty,price,name_first,name_last,email,address_zipcode,address_state,address,card_number,expiration_MM,expiration_YY,shipping_method" +
+            String sql = "SELECT user_id,pet_id,qty,price,name_first,name_last,email,address_zipcode,address_state,address,card_number,expiration_MM,expiration_YY,shipping_method,phone_number" +
                     " FROM orders" +
-                    " WHERE user_id = '"+curID+"';";
+                    " WHERE user_id = '"+curID+"' AND paid=false;";
 //            String sql = "SELECT pet_id FROM orders WHERE user_id='1'";
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -81,6 +81,7 @@ public class OrderDetail extends HttpServlet {
             while(rs.next()) {
                 writer.println("<div>User Id: " + rs.getInt("user_id") + "</div>");
                 writer.println("<div>Name: " + rs.getString("name_first") + " " + rs.getString("name_last") + "</div>");
+                writer.println("<div>Phone: " + rs.getString("phone_number") + "</div>");
                 writer.println("<div>Email: " + rs.getString("email") + "</div>");
                 writer.println("<div>Address: " + rs.getString("address") + " , " + rs.getString("address_state") + ", " + rs.getString("address_zipcode") + "</div>");
                 writer.println("<div>Card Number: " + rs.getString("card_number") + "</div>");
@@ -97,6 +98,11 @@ public class OrderDetail extends HttpServlet {
                         "Price: $" + rs.getFloat("price")+"\n"+
                         "</div>");
                 price_total += rs.getInt("qty")*rs.getFloat("price");
+
+                String updateProductStatus = "update orders set paid=true where user_id='"+ curID +"' and pet_id='"+rs.getString("pet_id")+"';";
+                Statement new_stmt = con.createStatement();
+                new_stmt.executeUpdate(updateProductStatus);
+                new_stmt.close();
             }
             writer.println("<div><h3>Total Cost: $"+price_total+"</h3></div>");
             writer.println("</div></body> </Html> ");

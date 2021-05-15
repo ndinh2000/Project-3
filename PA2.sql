@@ -62,8 +62,12 @@ CREATE TABLE `Orders`(
                          `expiration_MM` varchar(5) NOT NULL,
                          `expiration_YY` varchar(5) NOT NULL,
                          shipping_method enum('ground', 'overnight', 'two_days'),
-                         PRIMARY KEY (`order_id`)
+                         `paid` boolean not null default 0,
+                         `phone_number` varchar(20) not null,
+                         PRIMARY KEY (`order_id`),
+                         foreign key (`pet_id`) references Pet(pet_id)
 );
+
 CREATE TABLE `Ratings` (
                            `user_id` int NOT NULL,
                            `pet_id` varchar(10) NOT NULL,

@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Pet Shop | Home</title>
-    <link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/myStyle.css' />
+    <style><%@include file="/myStyle.css"%></style>
 </head>
 
 <body>
@@ -31,9 +31,9 @@
 <div id = "top-nav-bar">
     <ul>
         <li><a class="active" href=><h3> Home </h3></a></li>
-        <li><a href=PA2/DogsServlet><h3> Dogs </h3></a></li>
-        <li><a href=PA2/CatsServlet><h3> Cats </h3></a></li>
-        <li><a href=PA2/ContactServlet><h3> Contact </h3></a></li>
+        <li><a href=./DogsServlet><h3> Dogs </h3></a></li>
+        <li><a href=./CatsServlet><h3> Cats </h3></a></li>
+        <li><a href=./ContactServlet><h3> Contact </h3></a></li>
     </ul>
 </div>
 </html>

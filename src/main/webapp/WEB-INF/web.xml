@@ -20,7 +20,8 @@
     </servlet>
     <servlet>
         <servlet-name>HomePage</servlet-name>
-        <jsp-file>/HomePage.jsp</jsp-file>
+        <servlet-class>HomeServlet</servlet-class>
+<!--        <jsp-file>/HomePage.jsp</jsp-file>-->
     </servlet>
 
     <servlet>
@@ -91,7 +92,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomePage</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern></url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
