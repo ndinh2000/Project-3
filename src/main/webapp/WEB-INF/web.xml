@@ -37,7 +37,8 @@
     </servlet>
     <servlet>
         <servlet-name>ProductDetail</servlet-name>
-        <servlet-class>ProductDetail</servlet-class>
+<!--        <servlet-class>ProductDetail</servlet-class>-->
+        <jsp-file>/ProductDetailPage.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>Cart</servlet-name>
