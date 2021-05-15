@@ -95,7 +95,7 @@ public class Cart extends HttpServlet {
 //                    writer.println("<i>Trying to connect to sql server</i>");
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                            + "petstore", "root", "anqizhong1999.");
+                            + "petstore", "root", "root");
                     Statement stmt = con.createStatement();
 //                    writer.println("<i>Connected to sql server</i>");
                     float total = 0;

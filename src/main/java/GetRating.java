@@ -40,7 +40,7 @@ public class GetRating extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "anqizhong1999.");
+                    + "petstore", "root", "root");
             Statement stmt = con.createStatement();
             String pet_id = request.getParameter("pet_id");
             String sql = "SELECT rating FROM ratings WHERE pet_id = '" + pet_id + "';";

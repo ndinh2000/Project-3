@@ -33,7 +33,7 @@ public class OrderDetail extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "anqizhong1999.");
+                    + "petstore", "root", "root");
             HttpSession session = request.getSession(true);
             Integer curID = (Integer)session.getAttribute("user_id");
 

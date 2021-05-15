@@ -30,6 +30,7 @@
 </head>
 
 <body>
+<p>this is jsp</p>
 <p>
     Your user_id is <%= session.getAttribute("user_id") %>,
     next user_id is <jsp:getProperty name="idbean" property="id"/>

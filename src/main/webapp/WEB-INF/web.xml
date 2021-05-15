@@ -29,11 +29,13 @@
 
     <servlet>
         <servlet-name>DogsServlet</servlet-name>
-        <servlet-class>DogsServlet</servlet-class>
+<!--        <servlet-class>DogsServlet</servlet-class>-->
+        <jsp-file>/DogPage.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>CatsServlet</servlet-name>
-        <servlet-class>CatsServlet</servlet-class>
+<!--        <servlet-class>CatsServlet</servlet-class>-->
+        <jsp-file>/CatPage.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>ProductDetail</servlet-name>
