@@ -9,27 +9,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>--%>
 
+<jsp:useBean id="idbean" scope="application"
+                class="com.mycompany.PA2.GetID" />
+
+<%
+    Integer user_id = (Integer) session.getAttribute("user_id");
+    if (user_id == null) {
+        int next_id = idbean.getId();
+        session.setAttribute("user_id", next_id);
+        idbean.incId();
+    }
+%>
+
 <html>
-
-<%--<c:set var = "id" scope = "session" value = "0"/>--%>
-
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Pet Shop | Home</title>
-<%--    <link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/myStyle.css' />--%>
-<%--    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/myStyle.css' />--%>
     <style><%@include file="/myStyle.css"%></style>
 </head>
 
 <body>
-<%--<%=getID(request, response)%>--%>
+<p>
+    Your user_id is <%= session.getAttribute("user_id") %>,
+    next user_id is <jsp:getProperty name="idbean" property="id"/>
+</p>
 <div id="header">
     <h1>
         <img src="<%=request.getContextPath()%>/images/Logo/shopLogo.png">
     </h1>
 </div>
-
 <div id = "top-nav-bar">
     <ul>
         <li><a class="active" href=><h3> Home </h3></a></li>
@@ -38,42 +47,6 @@
         <li><a href=./ContactServlet><h3> Contact </h3></a></li>
     </ul>
 </div>
+<jsp:include page="/Last5" flush="true"/>
+<jsp:include page="/Products" flush="true"/>
 </html>
-
-<%--<%--%>
-<%--    String url1 = "/Last5";--%>
-<%--    String url2 = "/Products";--%>
-<%--    RequestDispatcher rd = request.getRequestDispatcher(url1);--%>
-<%--    rd.include(request, response);--%>
-<%--    rd = request.getRequestDispatcher(url2);--%>
-<%--    rd.include(request, response);--%>
-<%--%>--%>
-
-<%--<jsp:include page="Last5"/>--%>
-
-<%!
-    void getID(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-//        HttpSession session = request.getSession(true);
-//        Integer user_id = (Integer) session.getAttribute("user_id");
-//
-//        String heading;
-//
-//        if (user_id == null) {
-//            session.setAttribute("user_id", this.id);
-//            this.id++;
-//            heading = "Welcome, New-Comer, your ID is "
-//                    + session.getAttribute("user_id")
-//                    + ", nextID is " + this.id;
-//        } else {
-//            heading = "Welcome Back, your ID is "
-//                    + session.getAttribute("user_id")
-//                    + ", nextID is " + this.id;
-//        }
-//
-//        /*  Print out heading for debugging  */
-//        PrintWriter out = response.getWriter();
-//        out.println(heading);
-    }
-%>
