@@ -6,6 +6,10 @@
         <servlet-class>DisplayImage</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ContactServlet</servlet-name>
+        <jsp-file>/ContactPage.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>Products</servlet-name>
         <servlet-class>Products</servlet-class>
     </servlet>
@@ -14,10 +18,10 @@
         <servlet-class>Last5</servlet-class>
     </servlet>
 
-    <servlet>
-        <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>HomeServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>HomeServlet</servlet-name>-->
+<!--        <servlet-class>HomeServlet</servlet-class>-->
+<!--    </servlet>-->
     <servlet>
         <servlet-name>HomePage</servlet-name>
         <jsp-file>/HomePage.jsp</jsp-file>
@@ -85,13 +89,17 @@
         <url-pattern>/Last5</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/HomeServlet</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>HomeServlet</servlet-name>-->
+<!--        <url-pattern>/HomeServlet</url-pattern>-->
+<!--    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>HomePage</servlet-name>
         <url-pattern></url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactServlet</servlet-name>
+        <url-pattern>/ContactServlet</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

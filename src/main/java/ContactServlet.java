@@ -45,9 +45,6 @@ public class ContactServlet extends HttpServlet {
                     "            <li><a class=\"active\" href=\"./ContactServlet\"><h3> Contact </h3></a></li>\n" +
                     "        </ul>\n" +
                     "    </div>\n" +
-                    "\n" +
-                    "    <div id=\"main\">\n" +
-                    "\n" +
 
                     "    <div id=\"main\">\n" +
                     "\n" +

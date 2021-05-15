@@ -49,4 +49,5 @@
 </div>
 <jsp:include page="/Last5" flush="true"/>
 <jsp:include page="/Products" flush="true"/>
+</body>
 </html>
