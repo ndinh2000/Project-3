@@ -210,7 +210,6 @@ public class Checkout extends HttpServlet {
         PrintWriter writer = response.getWriter();
         String message = "";
 
-        System.out.println("LENGTH" + creditCard.length());
 
         if(fname != null && !fname.matches("^[a-zA-Z]*$"))
         {
