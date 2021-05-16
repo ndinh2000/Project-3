@@ -57,8 +57,7 @@ public class ProductDetail extends HttpServlet {
                     "    <meta charset=\"UTF-8\">\n" +
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                     "    <title>The Pet Shop</title>\n");
-            writer.println("<link rel='stylesheet' type='text/css' href='" + request.getContextPath() +  "/myStyle.css' />"+
-                    "<script src='"+request.getContextPath()+"/script.js'></script>"+"</head>");
+            writer.println("<link rel='stylesheet' type='text/css' href='" + request.getContextPath() +  "/myStyle.css' />"+"</head>");
 
             response.setContentType("text/html;charset=UTF-8");
             String url1 = "/titleHeader";

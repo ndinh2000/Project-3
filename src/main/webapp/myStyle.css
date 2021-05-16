@@ -191,7 +191,7 @@ img {
 
 @media only screen and (min-width: 754px) {
     /* / For desktop: / */
-    .col-2{width: 33.33%;}
+    .col-2{width: 50%;}
     .col-3 {width: 50%;}
     .img-container { height: 600px; }
 }
@@ -203,6 +203,6 @@ img {
 
 @media only screen and (min-width: 1400px) {
     /* / For desktop: */
-    .col-2{width: 16.66%;}
+    .col-2{width: 20%;}
     .col-3 {width: 25%;}
 }

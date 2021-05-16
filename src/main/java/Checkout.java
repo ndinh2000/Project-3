@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -96,7 +98,9 @@ public class Checkout extends HttpServlet {
                     ResultSet rs = stmt.executeQuery(sql);
                     Integer qty = cart.get(item);
 //                    String p_sql = "update Order set user_id=? , pet_id=?, qty=?, price=?,name_first=?,name_last=?";
-                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO `Orders`(user_id,pet_id,qty,price,name_first,name_last,email,address_zipcode,address_state,address,card_number,expiration_MM,expiration_YY,shipping_method) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO `Orders`(user_id,pet_id,qty,price,name_first,name_last,email,address_zipcode,address_state,address,card_number,expiration_MM,expiration_YY,shipping_method,phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+//                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO `Orders`(user_id) VALUES (?)");
 
                     pstmt.setInt(1,curID);
                     pstmt.setString(2,item);
@@ -114,6 +118,7 @@ public class Checkout extends HttpServlet {
                     pstmt.setString(12,expireMM);
                     pstmt.setString(13,expireYY);
                     pstmt.setString(14,shippingMethod);
+                    pstmt.setString(15,phone);
 
                     pstmt.executeUpdate();
 
@@ -183,16 +188,88 @@ public class Checkout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+//        String phone = request.getParameter("phone");
+        String email = request.getParameter("clientEmail");
+        String creditCard = request.getParameter("credit-card");
+        int expireMM = Integer.parseInt(request.getParameter("expireMM"));
+        int expireYY = Integer.parseInt(request.getParameter("expireYY"));
+        String address = request.getParameter("address");
+        String state = request.getParameter("state");
+        String zip = request.getParameter("zip");
+//        String shippingMethod = request.getParameter("shipping-method");
+
+        String[] arr_states = new String[]{"AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI",
+                "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN",
+                "MS", "MO", "MT", "NC", "NE", "NH", "NJ", "NM", "NV", "NY", "ND", "OH",
+                "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA",
+                "WV", "WI", "WY"};
+        List<String> states = new ArrayList<>(Arrays.asList(arr_states));
+
+        PrintWriter writer = response.getWriter();
+        String message = "";
+
+        if(fname != null && !fname.matches("^[a-zA-Z]*$"))
+        {
+            message = "Invalid First Name!";
         }
-//        String url = "/OrderDetail";
-//        RequestDispatcher rd = request.getRequestDispatcher(url);
-//        rd.forward(request, response);
+        else if(lname != null && !lname.matches("^[a-zA-Z]*$"))
+        {
+            message = "Invalid Last Name!";
+        }
+        else if(email != null && !email.matches("\\S+@\\S+\\.\\S+"))
+        {
+            message = "Invalid Email!";
+        }
+        else if(creditCard != null && creditCard.length() == 16 && !creditCard.matches("^(?:4[0-9]{12}(?:[0-9]{3})?)$"))
+        {
+            message = "Invalid Card Number!";
+        }
+        else if(expireMM <= 5 && expireYY == 21)
+        {
+            message = "Your Card Has Expired!";
+        }
+        else if(address != null && !address.matches("^\\s*\\S+(?:\\s+\\S+){2}" ))
+        {
+            message = "Invalid Address!";
+        }
+        else if(state != null && !states.contains(state.toUpperCase()))
+        {
+            message = "Invalid State!";
+        }
+        else if(zip != null && !zip.matches("^[0-9]{5}(?:-[0-9]{4})?$"))
+        {
+            message = "Invalid Zip Code!";
+        }
+
+
+        if(!message.isEmpty())
+        {
+            writer.println("<script type=\"text/javascript\">");
+            writer.println("alert('"+message+"');");
+            writer.println("location='/PA2/Cart';");
+            writer.println("</script>");
+        }
+        else
+        {
+            try {
+                processRequest(request, response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+//        try {
+//            processRequest(request, response);
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**

@@ -59,6 +59,12 @@ public class Cart extends HttpServlet {
                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                 "    <title>The Pet Shop</title>\n");
         writer.println("<link rel='stylesheet' type='text/css' href='" + request.getContextPath() +  "/myStyle.css' />");
+
+
+//        writer.println("<script type='text/JavaScript' src ='" + request.getContextPath() +  "/ZipJS.js' />");
+        writer.println("<script type = \"text/JavaScript\" src ='"+request.getContextPath() +  "/ZipJS.js' />" +
+                "    </script>");
+
         writer.println("</head>"+
                 "<body>\n" +
                 "    <div id=\"header\"><h1><img src=\"images/shopLogo.png\"></h1></div>\n" +
@@ -80,14 +86,17 @@ public class Cart extends HttpServlet {
 //                writer.println("pet_id is not null: " + pet_id);
 //                cart.add(pet_id); // Add the new item to the previousItems ArrayList
                 cart.put(pet_id, cart.getOrDefault(pet_id, 0) + 1);
-            } else {
+            }else if( cart.size() > 0){
+                //do nothing
+            }
+            else {
                 writer.println("<h2 style='text-align:center;color:rgb(95, 139, 235);'>Your Cart is Empty!<h2>");
             }
 
             // Display the current previousItems ArrayList
             if (cart.size() != 0){
 //                writer.println("<ul>");
-                writer.println("<h2 style='padding-left:2%;'>Your Cart:</h2>");
+                writer.println("<h2 style='padding-left:2%;'>Your Cart: "+cart.size()+"</h2>");
                 try {
 //                    writer.println("<i>Trying to connect to sql server</i>");
                     Class.forName("com.mysql.jdbc.Driver");
@@ -101,9 +110,13 @@ public class Cart extends HttpServlet {
                     writer.println("<div id='main'>");
                     for (String item : cart.keySet()) {
 //                    writer.println("<li>" + item);
+//                        String sql = "SELECT DISTINCT p.name, p.price,p.profile_picture" +
+//                                " FROM pet p, orders o" +
+//                                " WHERE (o.pet_id ='"+item+"' AND o.paid=false AND o.pet_id = p.pet_id) OR p.pet_id ='"+item+"';";
                         String sql = "SELECT name, price,profile_picture" +
                                 " FROM pet" +
-                                " WHERE pet_id = '" + item + "';";
+                                " WHERE pet_id ='"+item+"';";
+
                         ResultSet rs = stmt.executeQuery(sql);
                         qty = cart.get(item);
                         String imgPath = "";
@@ -114,14 +127,15 @@ public class Cart extends HttpServlet {
                                     "            <div class=\"col-3 col-s-5\">\n" +
                                     "                <div class=\"profile\">");
                             imgPath = rs.getString("profile_picture");
-                            writer.println("<img src='"+imgPath+"'>");
-                            writer.println("</div></div>"+
+                            writer.println("<img src='" + imgPath + "'>");
+                            writer.println("</div></div>" +
                                     "            <div class=\"col-3 col-s-5\" style=\"text-align: left; padding-top: 35px;\">" +
-                                    "                <h2>Name: "+ rs.getString("name")+"</h2>\n" +
-                                    "                <h2>Price: $"+rs.getFloat("price")+"</h2>\n" +
-                                    "                <h2>Qty: "+qty+"</h2>\n" +
+                                    "                <h2>Name: " + rs.getString("name") + "</h2>\n" +
+                                    "                <h2>Price: $" + rs.getFloat("price") + "</h2>\n" +
+                                    "                <h2>Qty: " + qty + "</h2>\n" +
                                     "            </div>\n" +
                                     "        </div>");
+
 //                            writer.println("<div>");
 //                            writer.println(rs.getString("name"));
 //                            writer.println("</div>");
@@ -156,7 +170,7 @@ public class Cart extends HttpServlet {
                             "                            <label for=\"phone\">Phone Number: </label><br>\n" +
                             "                            <input type=\"tel\" id=\"phone\" name=\"phone\" pattern=\"[0-9]{3}-[0-9]{3}-[0-9]{4}\" required placeholder=\"123-456-7890\"><br><br>\n" +
                             "                            <label for=\"clientEmail\">Email: </label><br>\n" +
-                            "                            <input type=\"text\" name=\"clientEmail\" required><br><br>\n" +
+                            "                            <input type=\"text\" name=\"clientEmail\" required><br>\n" +
                             "                        </div>\n" +
                             "                        <div class=\"col-2\" style=\"text-align: left\">\n" +
                             "                            <label for=\"credit-card\">Credit Card Number: </label><br>\n" +
@@ -196,13 +210,20 @@ public class Cart extends HttpServlet {
                             "                        </div>\n" +
                             "                        <div class=\"col-2\" style=\"text-align: left\">\n" +
                             "                            <label for=\"zip\">Zip Code: </label><br>\n" +
-                            "                            <input type=\"number\" id=\"zip\" name=\"zip\" required><br><br>\n" +
+
+                            "                            <input type=\"number\" id=\"zip\" name=\"zip\" " +
+                            "onblur = \"getZip(this.value)\"" +
+                            "required>" +
+                            "<br><br>\n" +
+
+
+
                             "                            <label for=\"shipping-method\">Shipping Method: </label><br>\n" +
                             "                            <select name=\"shipping-method\" id=\"shipping-method\">\n" +
                             "                                <option value=\"overnight\">First Overnight</option>\n" +
                             "                                <option value=\"2days\">2 days</option>\n" +
                             "                                <option value=\"ground\">Ground</option>\n" +
-                            "                            </select><br/><br>\n" +
+                            "                            </select><br/>\n" +
                             "                        </div>\n" +
                             "                    </div>\n" +
                             "                    <div class=\"row\" style=\"padding-top: 0;\">\n" +
