@@ -25,6 +25,6 @@ Requirements Satisfaction:
 
 1. We have made our websites home page a jsp called HomePage. Furthermore, the pages DogPage, CatPage, ContactPage, and ProductDetailPage have been made into jsps.
 
-2. Ajax has been used on our checkout page. When filling out the order information, Ajax is implemented in two ways. First, when a U.S. zipcode is entered, the state shall automatically be filled in. For example, writing 92612 would make the state become "CA". Second, when the user is filling out their phone number, we require their formatting to be sepereated by dashes. Because this felt bulky for the user to go back and change if inputted incorrectly, we added Ajax to automatically change the format of the phone number. For example, if the user inputs 9491112222 as their phone number, the ajax will reformat it to 949-111-2222.
+2. Ajax has been used on our checkout page. When filling out the order information, Ajax is implemented in two ways. First, when a U.S. zipcode is entered, the state shall automatically be filled in. For example, writing 92612 would make the state become "CA". Second, when the user is filling out their phone number, we require their formatting to be sepereated by dashes. Because this felt bulky for the user to go back and change if inputted incorrectly, we added Ajax to automatically change the format of the phone number. For example, if the user inputs 9491112222 as their phone number, the ajax will reformat it to 949-111-2222. The Ajax code was also heavily inspired by our professor's example code from class.
 
 3. TBD
