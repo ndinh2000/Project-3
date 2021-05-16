@@ -203,8 +203,8 @@ public class Cart extends HttpServlet {
                             "                        <div class=\"col-2\" style=\"text-align: left\">\n" +
                             "                            <label for=\"zip\">Zip Code: </label><br>\n" +
 
-                            "                            <input type=\"text\" id=\"zip\" name=\"zip\" " +
-                            "onblur = \"getZip(this.value)\"" +
+                            "                            <input type=\"Integer\" id=\"zip\" name=\"zip\" " +
+                            "onblur = \"getZip(String(this.value))\"" +
                             "required>" +
                             "<br><br>\n" +
 
