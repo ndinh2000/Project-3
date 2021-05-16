@@ -47,10 +47,18 @@ public class Checkout extends HttpServlet {
         HttpSession session = request.getSession(true);
         Integer curID = (Integer)session.getAttribute("user_id");
         HashMap<String, Integer> cart = (HashMap<String, Integer>) session.getAttribute("cart");
-
+//        if (cart == null) {
+//            // Add the newly created ArrayList to session, so that it could be retrieved next time
+////            cart = new ArrayList<>();
+//            cart = new HashMap<String, Integer>();
+//            session.setAttribute("cart", cart);
+//        }
+//        synchronized (cart) {
+//
+//        }
         synchronized (cart) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
                         + "petstore", "root", "root");
                 String fname = request.getParameter("fname");
@@ -65,6 +73,21 @@ public class Checkout extends HttpServlet {
                 String zip = request.getParameter("zip");
                 String shippingMethod = request.getParameter("shipping-method");
 
+//                PrintWriter writer = response.getWriter();
+//                writer.println(curID);
+//                writer.println(fname);
+//                writer.println(lname);
+//                writer.println(phone);
+//                writer.println(email);
+//                writer.println(creditCard);
+//                writer.println(expireMM);
+//                writer.println(expireYY);
+//                writer.println(address);
+//                writer.println(state);
+//                writer.println(zip);
+//                writer.println(shippingMethod);
+
+//                Statement stmt = con.createStatement();
                 for(String item: cart.keySet())
                 {
 //                    writer.println("\n"+item);
@@ -181,11 +204,13 @@ public class Checkout extends HttpServlet {
                 "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN",
                 "MS", "MO", "MT", "NC", "NE", "NH", "NJ", "NM", "NV", "NY", "ND", "OH",
                 "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA",
-                "WV", "WI", "WY"};
+                "WV", "WI", "WY", "PR"};
         List<String> states = new ArrayList<>(Arrays.asList(arr_states));
 
         PrintWriter writer = response.getWriter();
         String message = "";
+
+        System.out.println("LENGTH" + creditCard.length());
 
         if(fname != null && !fname.matches("^[a-zA-Z]*$"))
         {
@@ -199,7 +224,7 @@ public class Checkout extends HttpServlet {
         {
             message = "Invalid Email!";
         }
-        else if(creditCard != null && creditCard.length() == 16 && !creditCard.matches("^(?:4[0-9]{12}(?:[0-9]{3})?)$"))
+        else if(creditCard != null &&  !creditCard.matches("^(?:4[0-9]{12}(?:[0-9]{3})?)$"))
         {
             message = "Invalid Card Number!";
         }

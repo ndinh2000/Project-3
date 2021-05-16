@@ -35,7 +35,7 @@ public class PhoneRef extends HttpServlet{
                 out.write(phone);
 
             } else if (count == 0 && phone.length() == 10){
-                fullPhone += phone.substring(0,3) + '-' +  phone.substring(3,6) + '-' +  phone.substring(6,9);
+                fullPhone += phone.substring(0,3) + '-' +  phone.substring(3,6) + '-' +  phone.substring(6,10);
 //                System.out.println(fullPhone+",");
                 out.write(fullPhone);
             }
