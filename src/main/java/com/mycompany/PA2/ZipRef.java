@@ -13,10 +13,10 @@ import java.util.HashMap;
 @WebServlet(urlPatterns = {"/ZipRef"})
 public class ZipRef extends HttpServlet{
 
-    HashMap<Integer, String> map = new HashMap<Integer, String>();
+    HashMap<String, String> map = new HashMap<String, String>();
     public void init (ServletConfig config)
     {
-                map.put (92612, "CA, CA");
+                map.put ("92612", "CA, CA");
 
 //        map.put ("92612", "CA");
 //        map.put ("81611", "Aspen, Colorado");

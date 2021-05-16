@@ -136,14 +136,6 @@ public class Cart extends HttpServlet {
                                     "            </div>\n" +
                                     "        </div>");
 
-//                            writer.println("<div>");
-//                            writer.println(rs.getString("name"));
-//                            writer.println("</div>");
-//                            imgPath = rs.getString("profile_picture");
-//                            writer.println("<div>");
-//                            writer.println("<img style='width: 200px;' src='" + imgPath + "'");
-//                            writer.println("</div>");
-//                            writer.println("</br>");
                         }
 //                        writer.println("</body> </Html> ");
                     }
@@ -211,7 +203,7 @@ public class Cart extends HttpServlet {
                             "                        <div class=\"col-2\" style=\"text-align: left\">\n" +
                             "                            <label for=\"zip\">Zip Code: </label><br>\n" +
 
-                            "                            <input type=\"number\" id=\"zip\" name=\"zip\" " +
+                            "                            <input type=\"text\" id=\"zip\" name=\"zip\" " +
                             "onblur = \"getZip(this.value)\"" +
                             "required>" +
                             "<br><br>\n" +
