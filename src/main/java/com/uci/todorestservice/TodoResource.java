@@ -1,13 +1,11 @@
 package com.uci.todorestservice;
 
-import com.uci.todorestservice.model.Todo;
 import com.uci.todorestservice.model.Pet;
 import com.uci.todorestservice.service.TodoService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * This class contains the methods that will respond to the various endpoints that you define for your RESTful API Service.
@@ -16,6 +14,26 @@ import java.util.List;
 //todos will be the pathsegment that precedes any path segment specified by @Path on a method.
 @Path("/todos")
 public class TodoResource {
+
+//    @Path("{user_id}")
+////    @Path("/get")
+//    @POST
+//    @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
+//    public Response updateRatingByUserID(@PathParam("id") String id/* The {id} placeholder parameter is resolved */) {
+//        @Path("{pet_id}")
+////    @Path("/get")
+//        @POST
+//        @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
+//        public Response updateRatingByUserID(@PathParam("id") String id/* The {id} placeholder parameter is resolved */) {
+//            @Path("{rating}")
+////    @Path("/get")
+//            @POST
+//            @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
+//            public Response updateRatingByUserID(@PathParam("id") String id/* The {id} placeholder parameter is resolved */) {
+//
+//            }
+//        }
+//    }
 
 
     //This method represents an endpoint with the URL /todos/{id} and a GET request ( Note that {id} is a placeholder for a path parameter)

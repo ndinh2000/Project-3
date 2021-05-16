@@ -2,14 +2,11 @@ package com.uci.todorestservice.service;
 
 import com.uci.todorestservice.db.DatabaseConnector;
 import com.uci.todorestservice.db.DatabaseUtils;
-import com.uci.todorestservice.model.Todo;
 import com.uci.todorestservice.model.Pet;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TodoService {
 
