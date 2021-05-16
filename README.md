@@ -3,6 +3,7 @@
 Team Members: Anqi Zhong, Nham N. Dinh, Yasemin Turkkan
 
 General Overview:
+
 -Home Page: Contains the last 5 products the user bought, and a product selection of our featured pets. This is a jsp, making use of a java bean (getID).
 
 -Dogs Page: Contains all dog animals being sold. This is a jsp.
