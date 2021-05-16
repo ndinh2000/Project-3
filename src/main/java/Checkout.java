@@ -47,15 +47,7 @@ public class Checkout extends HttpServlet {
         HttpSession session = request.getSession(true);
         Integer curID = (Integer)session.getAttribute("user_id");
         HashMap<String, Integer> cart = (HashMap<String, Integer>) session.getAttribute("cart");
-//        if (cart == null) {
-//            // Add the newly created ArrayList to session, so that it could be retrieved next time
-////            cart = new ArrayList<>();
-//            cart = new HashMap<String, Integer>();
-//            session.setAttribute("cart", cart);
-//        }
-//        synchronized (cart) {
-//
-//        }
+
         synchronized (cart) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -73,21 +65,6 @@ public class Checkout extends HttpServlet {
                 String zip = request.getParameter("zip");
                 String shippingMethod = request.getParameter("shipping-method");
 
-//                PrintWriter writer = response.getWriter();
-//                writer.println(curID);
-//                writer.println(fname);
-//                writer.println(lname);
-//                writer.println(phone);
-//                writer.println(email);
-//                writer.println(creditCard);
-//                writer.println(expireMM);
-//                writer.println(expireYY);
-//                writer.println(address);
-//                writer.println(state);
-//                writer.println(zip);
-//                writer.println(shippingMethod);
-
-//                Statement stmt = con.createStatement();
                 for(String item: cart.keySet())
                 {
 //                    writer.println("\n"+item);

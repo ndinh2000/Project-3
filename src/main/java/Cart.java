@@ -64,6 +64,8 @@ public class Cart extends HttpServlet {
 //        writer.println("<script type='text/JavaScript' src ='" + request.getContextPath() +  "/ZipJS.js' />");
         writer.println("<script type = \"text/JavaScript\" src ='"+request.getContextPath() +  "/ZipJS.js' />" +
                 "    </script>");
+        writer.println("<script type = \"text/JavaScript\" src ='"+request.getContextPath() +  "/PhoneJS.js' />" +
+                "    </script>");
 
         writer.println("</head>"+
                 "<body>\n" +
@@ -160,8 +162,16 @@ public class Cart extends HttpServlet {
                             "                        </div>\n" +
                             "                        <div class=\"col-2\" style=\"text-align: left\"> \n" +
                             "                            <label for=\"phone\">Phone Number: </label><br>\n" +
-                            "                            <input type=\"tel\" id=\"phone\" name=\"phone\" pattern=\"[0-9]{3}-[0-9]{3}-[0-9]{4}\" required placeholder=\"123-456-7890\"><br><br>\n" +
-                            "                            <label for=\"clientEmail\">Email: </label><br>\n" +
+
+                            "                            <input type=\"tel\" id=\"phone\" name=\"phone\" pattern=\"[0-9]{3}-[0-9]{3}-[0-9]{4}\" " +
+                            "                               required placeholder=\"123-456-7890\"" +
+                                                            "onblur = \"getPhone(String(this.value))\"" +
+                                                            "><br><br>\n" +
+
+
+
+
+                            "<label for=\"clientEmail\">Email: </label><br>\n" +
                             "                            <input type=\"text\" name=\"clientEmail\" required><br>\n" +
                             "                        </div>\n" +
                             "                        <div class=\"col-2\" style=\"text-align: left\">\n" +
