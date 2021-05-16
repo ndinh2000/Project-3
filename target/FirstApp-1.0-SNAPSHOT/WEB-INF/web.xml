@@ -140,4 +140,24 @@
             HomePage.jsp
         </welcome-file>
     </welcome-file-list>
+    <display-name>com.uci.todorestservice</display-name>
+    <servlet>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <!-- This is required. This class is obtained from your jersey-all library . Make sure it is imported into your project -->
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <!-- Specify the package where your Resource class is located-->
+            <!-- It it highly recommended that you use packages for this project. Since Todos
+            is my resource class and it is located in the com.uci.rest.package. I provide the following value-->
+            <param-value>com.uci.todorestservice</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <!-- This is the URL pattern for the target path segment that will precede the path segment specified
+        for the resource-->
+        <url-pattern>/v1/api/*</url-pattern>
+    </servlet-mapping>
 </web-app>
