@@ -1,5 +1,6 @@
 package com.mycompany.PA2;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,35 +14,36 @@ import java.util.HashMap;
 @WebServlet(urlPatterns = {"/ZipRef"})
 public class ZipRef extends HttpServlet{
 
-    HashMap<String, String> map = new HashMap<String, String>();
+//    HashMap<String, String> map = new HashMap<String, String>();
+HashMap<int[], String> map = new HashMap<int[], String>();
+
     public void init (ServletConfig config)
     {
-                map.put ("92612", "CA, CA");
-
-//        map.put ("92612", "CA");
-//        map.put ("81611", "Aspen, Colorado");
-//        map.put ("81411", "Bedrock, Colorado");
-//        map.put("80908", "Black Forest, Colorado");
-//        map.put("80301", "Boulder, Colorado");
-//        map.put("81127", "Chimney Rock, Colorado");
-//        map.put("80901", "Colorado Springs, Colorado");
-//        map.put("81223", "Cotopaxi, Colorado");
-//        map.put("80201", "Denver, Colorado");
-//        map.put("81657", "Vail, Colorado");
-//        map.put("80435", "Keystone, Colorado");
-//        map.put("80536", "Virginia Dale, Colorado");
+        map.put(new int[]{350, 369}, "AL,");
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String zip = request.getParameter("zip");
+        int zipI = Integer.parseInt(zip);
         response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            if (map.containsKey(zip)) {
+//                System.out.println(map.get(zip));
+//                out.write(map.get(zip));
+//            }else
+//                out.write(" , ");
+//        }
         try (PrintWriter out = response.getWriter()) {
-            if (map.containsKey(zip))
-                out.write(map.get(zip));
-            else
-                out.write(" , ");
+            for (int[] pair : map.keySet()) {
+                if (zipI >= pair[0] && zipI <= pair[1] ) {
+                    if (map.containsKey(pair)) {
+                        out.write(map.get(pair));
+                    }
+                }
+            }
+            out.write(" , ");
         }
     }
 

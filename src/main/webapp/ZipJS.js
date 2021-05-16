@@ -21,7 +21,7 @@ function getZip (zip)
             //if (document.getElementById ("city").value == "")
             // document.getElementById ("city").value = place[0];
             //if (document.getElementById ("state").value == "")
-            document.getElementById ("state").value = place[1];
+            document.getElementById ("state").value = place[0];
         }
     }
     // Call the response software component
