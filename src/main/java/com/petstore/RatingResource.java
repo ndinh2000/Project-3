@@ -1,75 +1,41 @@
 package com.petstore;
 
 import com.petstore.model.Pet;
+import com.petstore.model.Rating;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * This class contains the methods that will respond to the various endpoints that you define for your RESTful API Service.
  *
  */
 
-@Path("/pets")
-public class PetResource {
-
-//    @Path("{user_id}")
-////    @Path("/get")
-//    @POST
-//    @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-//    public Response updateRatingByUserID(@PathParam("id") String id/* The {id} placeholder parameter is resolved */) {
-//        @Path("{pet_id}")
-////    @Path("/get")
-//        @POST
-//        @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-//        public Response updateRatingByUserID(@PathParam("id") String id/* The {id} placeholder parameter is resolved */) {
-//            @Path("{rating}")
-////    @Path("/get")
-//            @POST
-//            @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-//            public Response updateRatingByUserID(@PathParam("id") String id/* The {id} placeholder parameter is resolved */) {
-//
-//            }
-//        }
-//    }
-
-
-    //This method represents an endpoint with the URL /todos/{id} and a GET request ( Note that {id} is a placeholder for a path parameter)
-//    @Path("{id}")
-//    @GET
-//    @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-//    public Response getTodoById(@PathParam("id") int id/* The {id} placeholder parameter is resolved */) {
-//        //invokes the DB method which will fetch a todo_list item object by id
-//        Todo todo = TodoService.getTodoById(id);
-//
-//        //Respond with a 404 if there is no such todo_list item for the id provided
-//        if(todo == null) {
-//            return Response.status(Response.Status.NOT_FOUND).build();
-//        }
-//
-//        //Respond with a 200 OK if you have a todo_list_item object to return as response
-//        return Response.ok(todo).build();
-//    }
+@Path("/ratings")
+public class RatingResource {
     @Path("{pet_id}")
-//    @Path("/get")
     @GET
     @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-    public Response getPetByID(@PathParam("pet_id") String pet_id/* The {id} placeholder parameter is resolved */) {
+    public Response getRatingByID(@PathParam("pet_id") String pet_id/* The {id} placeholder parameter is resolved */) {
 //    public Response getTodoById() {
         //invokes the DB method which will fetch a todo_list item object by id
 //        Pet pet = TodoService.getPetByID("D101");
-        Pet pet = com.petstore.service.PetService.getPetByID(pet_id);
+        List<Rating> ratings = com.petstore.service.RatingService.getRatingByID(pet_id);
 
         //Respond with a 404 if there is no such todo_list item for the id provided
-        if(pet == null) {
+        if(ratings == null) {
             String result = "database query returned null!!1!1!!";
             return Response.status(201).entity(result).build();
 //            return Response.status(Response.Status.NOT_FOUND).build();
         }
 
         //Respond with a 200 OK if you have a todo_list_item object to return as response
-        return Response.ok(pet).build();
+        return Response.ok(ratings).build();
     }
 
     //This method represents an endpoint with the URL /todos and a GET request.
