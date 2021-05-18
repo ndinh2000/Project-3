@@ -15,9 +15,9 @@
 <div id = "top-nav-bar">
     <ul>
         <li><a href="./"><h3> Home </h3></a></li>
-        <li><a href="./DogsServlet"><h3> Dogs </h3></a></li>
-        <li><a href="./CatsServlet"><h3> Cats </h3></a></li>
-        <li><a class="active" href="./ContactServlet"><h3> Contact </h3></a></li>
+        <li><a href="./DogsJSP"><h3> Dogs </h3></a></li>
+        <li><a href="./CatsJSP"><h3> Cats </h3></a></li>
+        <li><a class="active" href="./ContactJSP"><h3> Contact </h3></a></li>
     </ul>
 </div>
 

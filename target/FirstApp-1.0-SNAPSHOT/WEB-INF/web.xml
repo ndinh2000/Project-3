@@ -6,7 +6,7 @@
         <servlet-class>DisplayImage</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ContactServlet</servlet-name>
+        <servlet-name>ContactJSP</servlet-name>
         <jsp-file>/ContactPage.jsp</jsp-file>
     </servlet>
     <servlet>
@@ -28,12 +28,12 @@
     </servlet>
 
     <servlet>
-        <servlet-name>DogsServlet</servlet-name>
+        <servlet-name>DogsJSP</servlet-name>
         <!--        <servlet-class>DogsServlet</servlet-class>-->
         <jsp-file>/DogPage.jsp</jsp-file>
     </servlet>
     <servlet>
-        <servlet-name>CatsServlet</servlet-name>
+        <servlet-name>CatsJSP</servlet-name>
         <!--        <servlet-class>CatsServlet</servlet-class>-->
         <jsp-file>/CatPage.jsp</jsp-file>
     </servlet>
@@ -101,17 +101,17 @@
         <url-pattern></url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ContactServlet</servlet-name>
-        <url-pattern>/ContactServlet</url-pattern>
+        <servlet-name>ContactJSP</servlet-name>
+        <url-pattern>/ContactJSP</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>DogsServlet</servlet-name>
-        <url-pattern>/DogsServlet</url-pattern>
+        <servlet-name>DogsJSP</servlet-name>
+        <url-pattern>/DogsJSP</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CatsServlet</servlet-name>
-        <url-pattern>/CatsServlet</url-pattern>
+        <servlet-name>CatsJSP</servlet-name>
+        <url-pattern>/CatsJSP</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductDetail</servlet-name>
