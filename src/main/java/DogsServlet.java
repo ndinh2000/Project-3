@@ -46,7 +46,7 @@ public class DogsServlet extends HttpServlet {
                     "    <div id=\"header\"><h1><img src=\"./images/Logo/shopLogo.png\"></h1></div>\n" +
                     "    <div id = \"top-nav-bar\">\n" +
                     "        <ul>\n" +
-                    "            <li><a href=/PA2><h3> Home </h3></a></li>\n" +
+                    "            <li><a href=/PA3><h3> Home </h3></a></li>\n" +
                     "            <li><a class=\"active\" href=\"./DogsServlet\"><h3> Dogs </h3></a></li>\n" +
                     "            <li><a href=./CatsServlet><h3> Cats </h3></a></li>\n" +
                     "            <li><a href=./ContactServlet><h3> Contact </h3></a></li>\n" +
@@ -60,7 +60,7 @@ public class DogsServlet extends HttpServlet {
             String imgPath = "";
             while (rs.next()) {
                 writer.println("<div class=\"col-3 col-s-5 featuredPets\">");
-                writer.println("<a href=\"/PA2/ProductDetail?pet_id=" + rs.getString("pet_id") + "\">");
+                writer.println("<a href=\"/PA3/ProductDetail?pet_id=" + rs.getString("pet_id") + "\">");
                 writer.println("<div style=\"height: 275px;\">");
                 imgPath = rs.getString("profile_picture");
                 writer.println("<img src="+ imgPath +">");

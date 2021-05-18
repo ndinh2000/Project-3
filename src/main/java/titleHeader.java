@@ -39,9 +39,9 @@ public class titleHeader extends HttpServlet {
                     "    <div id = \"top-nav-bar\">\n" +
                     "        <ul>\n" +
                     "            <li><a href=./><h3> Home </h3></a></li>\n" +
-                    "            <li><a href=./DogsServlet><h3> Dogs </h3></a></li>\n" +
-                    "            <li><a href=./CatsServlet><h3> Cats </h3></a></li>\n" +
-                    "            <li><a href=./ContactServlet><h3> Contact </h3></a></li>\n" +
+                    "            <li><a href=./DogsJSP><h3> Dogs </h3></a></li>\n" +
+                    "            <li><a href=./CatsJSP><h3> Cats </h3></a></li>\n" +
+                    "            <li><a href=./ContactJSP><h3> Contact </h3></a></li>\n" +
                     "        </ul>\n" +
                     "    </div>\n" +
                     "\n");

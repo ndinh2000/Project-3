@@ -249,7 +249,7 @@ public class Checkout extends HttpServlet {
         {
             writer.println("<script type=\"text/javascript\">");
             writer.println("alert('"+message+"');");
-            writer.println("location='/PA2/Cart';");
+            writer.println("location='/PA3/Cart';");
             writer.println("</script>");
         }
         else

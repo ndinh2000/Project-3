@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
  */
 public class DisplayImage extends HttpServlet {
 
-//    public final String imagesBase = "C:\\Users\\ndinh\\Documents\\INF 124 Internet Application Engineering\\Code\\Project 2\\PA2\\pics/";
+//    public final String imagesBase = "C:\\Users\\ndinh\\Documents\\INF 124 Internet Application Engineering\\Code\\Project 3\\PA3\\pics/";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,11 +35,11 @@ public class DisplayImage extends HttpServlet {
             throws ServletException, IOException {
         
         /*
-            Important: Put images inside PA2\src\main\webapp\images before building
+            Important: Put images inside PA3\src\main\webapp\images before building
         */
 
         String URLAfterWebDomain = request.getRequestURI();
-        if(URLAfterWebDomain.startsWith("/PA2/images/") == false)
+        if(URLAfterWebDomain.startsWith("/PA3/images/") == false)
             return;
 
         ServletOutputStream out;
@@ -47,7 +47,7 @@ public class DisplayImage extends HttpServlet {
 
         ServletContext servletContext = request.getSession().getServletContext();
         String base = servletContext.getRealPath("/images/");
-        String relativeImagePath = URLAfterWebDomain.substring("/PA2/images/".length());
+        String relativeImagePath = URLAfterWebDomain.substring("/PA3/images/".length());
 
 //        response.setContentType("text/html");
 //        PrintWriter writer = response.getWriter();

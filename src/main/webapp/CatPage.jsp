@@ -19,7 +19,7 @@
 </head>
 <body>
 <p>this is jsp</p>
-<sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
+<sql:setDataSource var = "snapshot" driver = "com.mysql.cj.jdbc.Driver"
                    url = "jdbc:mysql:// localhost:3306/"
                    user = "root"  password = "root"/>
 
@@ -37,16 +37,16 @@
 <div id = "top-nav-bar">
   <ul>
     <li><a href=./><h3> Home </h3></a></li>
-    <li><a href=./DogsServlet><h3> Dogs </h3></a></li>
-    <li><a class="active" href=./CatsServlet><h3> Cats </h3></a></li>
-    <li><a href=./ContactServlet><h3> Contact </h3></a></li>
+    <li><a href=./DogsJSP><h3> Dogs </h3></a></li>
+    <li><a class="active" href=./CatsJSP><h3> Cats </h3></a></li>
+    <li><a href=./ContactJSP><h3> Contact </h3></a></li>
   </ul>
 </div>
 <div id="main">
   <div class="row">
     <c:forEach var = "row" items = "${result.rows}">
       <div class="col-3 col-s-5 featuredPets">
-        <a href="/PA2/ProductDetail?pet_id=${row.pet_id}">
+        <a href="/PA3/ProductDetail?pet_id=${row.pet_id}">
           <div style="height: 275px;">
             <img src="${row.profile_picture}">
           </div>

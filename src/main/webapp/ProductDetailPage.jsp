@@ -14,7 +14,7 @@
 <%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>--%>
 
 <jsp:useBean id="idbean" scope="application"
-             class="com.mycompany.PA2.GetID" />
+             class="com.mycompany.PA3.GetID" />
 
 <html>
 <head>
@@ -34,7 +34,7 @@
 <p>this is jsp</p>
 <%
     String pet_id = request.getParameter("pet_id");
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
             + "petstore", "root", "root");
     Statement stmt = con.createStatement();
@@ -62,7 +62,7 @@
             <p>&emsp;<%=rs.getString("message")%></p>
         </div>
     </div>
-    <form action=/PA2/Cart method='post'>
+    <form action=/PA3/Cart method='post'>
         <div class='addToCartButton'>
             <button name= pet_id value=<%=pet_id%>>
                 Add to Cart

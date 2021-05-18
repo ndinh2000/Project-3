@@ -73,9 +73,9 @@ public class Cart extends HttpServlet {
                 "    <div id = \"top-nav-bar\">\n" +
                 "        <ul>\n" +
                 "            <li><a href=./><h3> Home </h3></a></li>\n" +
-                "            <li><a href=./DogsServlet><h3> Dogs </h3></a></li>\n" +
-                "            <li><a href=./CatsServlet><h3> Cats </h3></a></li>\n" +
-                "            <li><a href=./ContactServlet><h3> Contact </h3></a></li>\n" +
+                "            <li><a href=./DogsJSP><h3> Dogs </h3></a></li>\n" +
+                "            <li><a href=./CatsJSP><h3> Cats </h3></a></li>\n" +
+                "            <li><a href=./ContactJSP><h3> Contact </h3></a></li>\n" +
                 //Trying below for now
 //                "<li><a href=./Products><h3> Latest Purchases </h3></a></li>\n" +
                 "        </ul>\n" +
@@ -101,7 +101,7 @@ public class Cart extends HttpServlet {
                 writer.println("<h2 style='padding-left:2%;'>Your Cart: "+cart.size()+"</h2>");
                 try {
 //                    writer.println("<i>Trying to connect to sql server</i>");
-                    Class.forName("com.mysql.jdbc.Driver");
+                    Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
                             + "petstore", "root", "root");
                     Statement stmt = con.createStatement();
@@ -152,7 +152,7 @@ public class Cart extends HttpServlet {
                             "                Order Information\n" +
                             "            </legend>\n" +
                             "            <div class=\"col-12\" style=\"text-align: left\">\n" +
-                            "                <form action=/PA2/Checkout method='post' onSubmit='return (checkRegistration())'> \n" +
+                            "                <form action=/PA3/Checkout method='post' onSubmit='return (checkRegistration())'> \n" +
                             "                    <div class=\"row\">\n" +
                             "                        <div class=\"col-2\" style=\"text-align: left\"> \n" +
                             "                            <label for=\"fname\">First Name: </label><br>\n" +

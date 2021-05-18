@@ -56,7 +56,7 @@ public class Products extends HttpServlet {
             String imgPath = "";
             while (rs.next()) {
                 writer.println("<div class=\"col-3 col-s-5 featuredPets\">");
-                writer.println("<a href=\"/PA2/ProductDetail?pet_id=" + rs.getString("pet_id") + "\">");
+                writer.println("<a href=\"/PA3/ProductDetail?pet_id=" + rs.getString("pet_id") + "\">");
                 writer.println("<div style=\"height: 275px;\">");
                 imgPath = rs.getString("profile_picture");
                 writer.println("<img src="+ imgPath +">");

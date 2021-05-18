@@ -1,4 +1,4 @@
-package com.mycompany.PA2;
+package com.mycompany.PA3;
 
 public class GetID {
     private static int id = 0;

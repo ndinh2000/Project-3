@@ -10,7 +10,7 @@
 <%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>--%>
 
 <jsp:useBean id="idbean" scope="application"
-             class="com.mycompany.PA2.GetID" />
+             class="com.mycompany.PA3.GetID" />
 
 <%
     Integer user_id = (Integer) session.getAttribute("user_id");
@@ -43,9 +43,9 @@
 <div id = "top-nav-bar">
     <ul>
         <li><a class="active" href=><h3> Home </h3></a></li>
-        <li><a href=./DogsServlet><h3> Dogs </h3></a></li>
-        <li><a href=./CatsServlet><h3> Cats </h3></a></li>
-        <li><a href=./ContactServlet><h3> Contact </h3></a></li>
+        <li><a href=./DogsJSP><h3> Dogs </h3></a></li>
+        <li><a href=./CatsJSP><h3> Cats </h3></a></li>
+        <li><a href=./ContactJSP><h3> Contact </h3></a></li>
     </ul>
 </div>
 <jsp:include page="/Last5" flush="true"/>

@@ -88,7 +88,7 @@ public class ProductDetail extends HttpServlet {
                         "                <p>&emsp; "+rs.getString("message")+"</p>\n" +
                         "            </div>\n" +
                         "        </div>");
-                writer.println("<form action=/PA2/Cart method='post'>");
+                writer.println("<form action=/PA3/Cart method='post'>");
                 writer.println("<div class='addToCartButton'><button name='pet_id' value='" + pet_id + "'>Add to Cart</button></div>");
                 writer.println("</form>");
                 writer.println("</div>");

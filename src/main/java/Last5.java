@@ -129,7 +129,7 @@ public class Last5 extends HttpServlet {
                     "                    str = str + \"<i class=\\\"fa fa-star\\\" style=\\\"color: gold; font-size:24px; padding: 5px;\\\" onclick=\\\"handleRating(\" + user_id + \", this.parentNode.id,\" + i + \")\\\"></i>\\n\";\n" +
                     "                }\n" +
                     "                document.getElementById(pet_id).innerHTML = str;\n" +
-                    "                let destination = \"/PA2/HandleRating?\";\n" +
+                    "                let destination = \"/PA3/HandleRating?\";\n" +
                     "                destination = destination + \"user_id=\" + user_id + \"&\";\n" +
                     "                destination = destination + \"pet_id=\" + pet_id + \"&\";\n" +
                     "                destination = destination + \"stars=\" + stars;\n" +
@@ -137,7 +137,7 @@ public class Last5 extends HttpServlet {
                     "                fetch(destination, {\n" +
                     "                    method: \"POST\",\n" +
                     "                });\n" +
-                    "window.href.location = \"/PA2\"" +
+                    "window.href.location = \"/PA3\"" +
                     "            }\n" +
                     "        </script>");
 //
@@ -145,7 +145,7 @@ public class Last5 extends HttpServlet {
             String imgPath = "";
             while (rs.next()) {
                 writer.println("<div class=\"col-3 col-s-5 featuredPets\">");
-                writer.println("<a href=\"/PA2/ProductDetail?pet_id=" + rs.getString("pet_id") + "\">");
+                writer.println("<a href=\"/PA3/ProductDetail?pet_id=" + rs.getString("pet_id") + "\">");
                 writer.println("<div style=\"height: 275px;\">");
                 imgPath = rs.getString("profile_picture");
                 writer.println("<img src="+ imgPath +">");
