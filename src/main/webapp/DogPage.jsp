@@ -19,9 +19,9 @@
 </head>
 <p>this is jsp</p>
 <body>
-<sql:setDataSource var = "snapshot" driver = "com.mysql.cj.jdbc.Driver"
+<sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
                    url = "jdbc:mysql:// localhost:3306/"
-                   user = "root"  password = "anqizhong1999."/>
+                   user = "root"  password = "root"/>
 
 <sql:query dataSource = "${snapshot}" var = "result">
   SELECT pet_id,name, age, gender, price, SUBSTRING(message, 1, 65) AS message, profile_picture

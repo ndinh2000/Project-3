@@ -58,9 +58,9 @@ public class Checkout extends HttpServlet {
 //        }
         synchronized (cart) {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                        + "petstore", "root", "anqizhong1999.");
+                        + "petstore", "root", "root");
                 String fname = request.getParameter("fname");
                 String lname = request.getParameter("lname");
                 String phone = request.getParameter("phone");

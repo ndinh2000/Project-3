@@ -13,7 +13,6 @@ public class PhoneRef extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        Reference: https://www.geeksforgeeks.org/convert-a-string-to-character-array-in-java/
         String phone = request.getParameter("phone");
         String fullPhone = "";
         response.setContentType("text/html;charset=UTF-8");

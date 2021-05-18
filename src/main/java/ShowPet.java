@@ -31,7 +31,7 @@ public class ShowPet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             String dbName = "petstore";
             String userName = System.getProperty("RDS_USERNAME");
             String password = System.getProperty("RDS_PASSWORD");

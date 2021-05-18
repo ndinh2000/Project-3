@@ -31,9 +31,9 @@
 <body>
 <p>this is jsp</p>
 <c:set var = "petID" value="${param.pet_id}"/>
-<sql:setDataSource var = "snapshot" driver = "com.mysql.cj.jdbc.Driver"
+<sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
                    url = "jdbc:mysql:// localhost:3306/"
-                   user = "root"  password = "anqizhong1999."/>
+                   user = "root"  password = "root"/>
 
 <sql:query dataSource = "${snapshot}" var = "result">
     SELECT name, age,gender,price,pet_id,message,profile_picture

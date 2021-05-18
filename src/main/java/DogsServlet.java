@@ -24,9 +24,9 @@ public class DogsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "anqizhong1999.");
+                    + "petstore", "root", "root");
             Statement stmt = con.createStatement();
             String sql = "SELECT pet_id,name, age, gender, price, SUBSTRING(message, 1, 65) AS message, profile_picture " +
                     "FROM petstore.pet WHERE pet_id LIKE 'D%'";
