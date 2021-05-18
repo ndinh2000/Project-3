@@ -26,7 +26,7 @@ public class CatsServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
+                    + "petstore", "root", "anqizhong1999.");
             Statement stmt = con.createStatement();
             String sql = "SELECT pet_id,name, age, gender, price, SUBSTRING(message, 1, 65) AS message, " +
                     "profile_picture FROM petstore.pet WHERE pet_id LIKE 'C%'";

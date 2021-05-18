@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,7 +32,7 @@ public class OrderDetail extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
+                    + "petstore", "root", "anqizhong1999.");
             HttpSession session = request.getSession(true);
             Integer curID = (Integer)session.getAttribute("user_id");
 
@@ -76,9 +75,11 @@ public class OrderDetail extends HttpServlet {
 //            writer.println("<div class=\"row\" style=\"padding-top: 0;\">");
 //            String imgPath = "";
 
+            String state = "";
             writer.println("<div style='padding-left:20px'>");
             writer.println("<div><h1>Confirmation Page<h1></div>");
             while(rs.next()) {
+                state = rs.getString("address_state");
                 writer.println("<div>User Id: " + rs.getInt("user_id") + "</div>");
                 writer.println("<div>Name: " + rs.getString("name_first") + " " + rs.getString("name_last") + "</div>");
                 writer.println("<div>Phone: " + rs.getString("phone_number") + "</div>");
@@ -104,9 +105,44 @@ public class OrderDetail extends HttpServlet {
                 new_stmt.executeUpdate(updateProductStatus);
                 new_stmt.close();
             }
-            writer.println("<div><h3>Total Cost: $"+price_total+"</h3></div>");
+
+            HashMap<String, String> map = new HashMap<String, String>();
+            try {
+                BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\azhon\\IdeaProjects\\Project-3\\src\\main\\webapp\\tax_rates2.csv"));
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    String str[] = line.split(",");
+                    map.put(str[0], str[3]);//state,tax
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("file not found");
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.out.println("IOException not found");
+                e.printStackTrace();
+            }
+
+//            String tax="0";
+            float tax = 0;
+            for(String m_state: map.keySet())
+            {
+                if(state.equals(m_state))
+                {
+                    tax = Float.parseFloat(map.get(m_state));
+                    break;
+                }
+            }
+//            float total_cost = price_total+(price_total*Float.parseFloat(tax));
+            float total_cost = price_total+(price_total*tax);
+            writer.println("<div>" +
+                    "<h3>Item Cost: $"+price_total+"</h3>"+
+                    "<h3>Tax:"+tax*100+"%</h3>"+
+                    "<h3>Total Cost: $"+total_cost+"</h3>" +
+                    "</div>");
             writer.println("</div></body> </Html> ");
             stmt.close();
+
+
 
             HashMap<String, Integer> cart = (HashMap<String, Integer>) session.getAttribute("cart");
             cart.clear();

@@ -45,7 +45,7 @@ public class ProductDetail extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
+                    + "petstore", "root", "anqizhong1999.");
             Statement stmt = con.createStatement();
             String sql = "SELECT name, age,gender,price,pet_id,message,profile_picture FROM pet "
                     + "WHERE pet_id = '" + pet_id + "';";

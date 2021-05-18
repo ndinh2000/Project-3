@@ -66,6 +66,8 @@ public class Cart extends HttpServlet {
                 "    </script>");
         writer.println("<script type = \"text/JavaScript\" src ='"+request.getContextPath() +  "/PhoneJS.js' />" +
                 "    </script>");
+        writer.println("<script type = \"text/JavaScript\" src ='"+request.getContextPath() +  "/TaxJS.js' />" +
+                "    </script>");
 
         writer.println("</head>"+
                 "<body>\n" +
@@ -73,9 +75,9 @@ public class Cart extends HttpServlet {
                 "    <div id = \"top-nav-bar\">\n" +
                 "        <ul>\n" +
                 "            <li><a href=./><h3> Home </h3></a></li>\n" +
-                "            <li><a href=./DogsJSP><h3> Dogs </h3></a></li>\n" +
-                "            <li><a href=./CatsJSP><h3> Cats </h3></a></li>\n" +
-                "            <li><a href=./ContactJSP><h3> Contact </h3></a></li>\n" +
+                "            <li><a href=./DogsServlet><h3> Dogs </h3></a></li>\n" +
+                "            <li><a href=./CatsServlet><h3> Cats </h3></a></li>\n" +
+                "            <li><a href=./ContactServlet><h3> Contact </h3></a></li>\n" +
                 //Trying below for now
 //                "<li><a href=./Products><h3> Latest Purchases </h3></a></li>\n" +
                 "        </ul>\n" +
@@ -103,7 +105,7 @@ public class Cart extends HttpServlet {
 //                    writer.println("<i>Trying to connect to sql server</i>");
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                            + "petstore", "root", "root");
+                            + "petstore", "root", "anqizhong1999.");
                     Statement stmt = con.createStatement();
 //                    writer.println("<i>Connected to sql server</i>");
                     float total = 0;
@@ -144,7 +146,12 @@ public class Cart extends HttpServlet {
                     writer.println("<hr class='solid'>");
                     writer.println("<div class='row' style='text-align:right;'>\n"+
                             "            <div class=\"col-12\">\n" +
-                            "<h2 style='text-align:left;padding-left:25%;'>Total: $"+total+"</h2></div></div>");
+                            "<h2 style='text-align:left;padding-left:25%;'>Items: $<span id='item_price'>"+total+"</span></h2>"+
+                            "<h2 style='text-align:left;padding-left:25%;'>Tax: <span id='tax'>0</span>%</h2>");
+
+
+
+                    writer.println("<h2 style='text-align:left;padding-left:25%;'>Total: $<span id='total_price'>"+total+"</span></h2></div></div>");
 //                            "<div class='col-6 col-s-5 addToCartButton' style='text-align:left;padding-top:20px;'><button>Proceed To Checkout</button>\n"+
 //                            "</div></div>");
                     writer.println("<fieldset>\n" +
@@ -165,8 +172,8 @@ public class Cart extends HttpServlet {
 
                             "                            <input type=\"tel\" id=\"phone\" name=\"phone\" pattern=\"[0-9]{3}-[0-9]{3}-[0-9]{4}\" " +
                             "                               required placeholder=\"123-456-7890\"" +
-                                                            "onblur = \"getPhone(String(this.value))\"" +
-                                                            "><br><br>\n" +
+                            "onblur = \"getPhone(String(this.value))\"" +
+                            "><br><br>\n" +
 
 
 
@@ -208,7 +215,7 @@ public class Cart extends HttpServlet {
                             "                            <label for=\"address\">Shipping Address: </label><br>\n" +
                             "                            <input type=\"text\" id=\"address\" name=\"address\" required><br><br>\n" +
                             "                            <label for=\"state\">State: </label><br>\n" +
-                            "                            <input type=\"text\" id=\"state\" name=\"state\" required><br>\n" +
+                            "                            <input type=\"text\" id=\"state\" name=\"state\" onblur='getTax(this.value)' required><br>\n" +
                             "                        </div>\n" +
                             "                        <div class=\"col-2\" style=\"text-align: left\">\n" +
                             "                            <label for=\"zip\">Zip Code: </label><br>\n" +

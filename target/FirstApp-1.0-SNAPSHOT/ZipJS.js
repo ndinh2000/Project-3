@@ -17,11 +17,10 @@ function getZip (zip)
         if (xhr.readyState == 4 && xhr.status == 200)
         { // Data should look like "Fairfax, Virginia"
             var result = xhr.responseText;
-            var place = result.split (', ');
-            //if (document.getElementById ("city").value == "")
-            // document.getElementById ("city").value = place[0];
-            //if (document.getElementById ("state").value == "")
-            document.getElementById ("state").value = place[0];
+            // var place = result.split (', ');
+
+            // document.getElementById ("state").value = place[0];
+            document.getElementById("state").value = result;
         }
     }
     // Call the response software component

@@ -1,18 +1,16 @@
-<%@ page import="java.io.IOException" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%--
   Created by IntelliJ IDEA.
-  User: YaseminTurkkan
-  Date: 5/12/2021
-  Time: 6:51 PM
+  User: azhon
+  Date: 5/17/2021
+  Time: 7:10 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>--%>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 <jsp:useBean id="idbean" scope="application"
              class="com.mycompany.PA3.GetID" />
 
@@ -32,47 +30,45 @@
 
 <body>
 <p>this is jsp</p>
-<%
-    String pet_id = request.getParameter("pet_id");
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-            + "petstore", "root", "root");
-    Statement stmt = con.createStatement();
-    String sql = "SELECT name, age,gender,price,pet_id,message,profile_picture FROM pet "
-            + "WHERE pet_id = '" + pet_id + "';";
-    ResultSet rs = stmt.executeQuery(sql);
+<c:set var = "petID" value="${param.pet_id}"/>
+<sql:setDataSource var = "snapshot" driver = "com.mysql.cj.jdbc.Driver"
+                   url = "jdbc:mysql:// localhost:3306/"
+                   user = "root"  password = "anqizhong1999."/>
 
+<sql:query dataSource = "${snapshot}" var = "result">
+    SELECT name, age,gender,price,pet_id,message,profile_picture
+    FROM petstore.pet
+    WHERE pet_id = ?
+    <sql:param value= "${petID}"/>
+</sql:query>
 
-    while (rs.next()) {
-%>
 <div id='main'>
-    <div class="row" style="text-align: left">
-        <div class="col-3 col-s-5">
-            <div class="profile">
-                <img src=<%=rs.getString("profile_picture")%>>
+    <c:forEach var = "row" items = "${result.rows}">
+        <div class="row" style="text-align: left">
+            <div class="col-3 col-s-5">
+                <div class="profile">
+                    <img src= "${row.profile_picture}">
+                </div>
+            </div>
+            <div class="col-3 col-s-5" style="text-align: left; padding-top: 35px;">
+                <p>Name: ${row.name}</p>
+                <p>Age:  ${row.age}</p>
+                <p>Gender:  ${row.gender}</p>
+                <p>Price: $ ${row.price}</p>
+                <p>ID:  ${row.pet_id}</p>
+                <p> ${row.name}'s Message: </p>
+                <p>&emsp; ${row.message}</p>
             </div>
         </div>
-        <div class="col-3 col-s-5" style="text-align: left; padding-top: 35px;">
-            <p>Name: <%=rs.getString("name")%></p>
-            <p>Age: <%=rs.getInt("age")%></p>
-            <p>Gender: <%=rs.getString("gender")%></p>
-            <p>Price: $<%=rs.getFloat("price")%></p>
-            <p>ID: <%=rs.getString("pet_id")%></p>
-            <p><%=rs.getString("name")%>'s Message: </p>
-            <p>&emsp;<%=rs.getString("message")%></p>
-        </div>
-    </div>
+    </c:forEach>
     <form action=/PA3/Cart method='post'>
         <div class='addToCartButton'>
-            <button name= pet_id value=<%=pet_id%>>
+            <button name= pet_id value=${petID}>
                 Add to Cart
             </button>
         </div>
     </form>
 </div>
-<%}
-    stmt.close();
-%>
 
 </body>
 </html>
