@@ -32,7 +32,7 @@ public class OrderDetail extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "anqizhong1999.");
+                    + "petstore", "root", "root");
             HttpSession session = request.getSession(true);
             Integer curID = (Integer)session.getAttribute("user_id");
 
@@ -108,7 +108,7 @@ public class OrderDetail extends HttpServlet {
 
             HashMap<String, String> map = new HashMap<String, String>();
             try {
-                BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\azhon\\IdeaProjects\\Project-3\\src\\main\\webapp\\tax_rates2.csv"));
+                BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ndinh\\Documents\\INF 124 Internet Application Engineering\\Code\\Project 3\\src\\main\\webapp\\tax_rates2.csv"));
                 String line = null;
                 while ((line = br.readLine()) != null) {
                     String str[] = line.split(",");

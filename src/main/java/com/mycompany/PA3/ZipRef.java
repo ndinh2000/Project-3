@@ -103,7 +103,7 @@ public class ZipRef extends HttpServlet{
 //            Path path = Paths.get("tax_rates2.csv");
 //            BufferedReader br=new BufferedReader(new FileReader(String.valueOf(path.getParent())));
 
-            BufferedReader br=new BufferedReader(new FileReader("C:\\Users\\azhon\\IdeaProjects\\Project-3\\src\\main\\webapp\\tax_rates2.csv"));
+            BufferedReader br=new BufferedReader(new FileReader("C:\\Users\\ndinh\\Documents\\INF 124 Internet Application Engineering\\Code\\Project 3\\src\\main\\webapp\\tax_rates2.csv"));
             String line = null;
             while((line=br.readLine()) != null)
             {

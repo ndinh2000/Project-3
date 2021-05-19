@@ -4,8 +4,15 @@
  * and open the template in the editor.
  */
 
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,6 +24,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -24,6 +34,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = {"/HandleRating"})
 public class HandleRating extends HttpServlet {
+
+    private final String ENDPOINT = "http://localhost:8088/PA3_Rest/v1/api/ratings/";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -108,28 +120,81 @@ public class HandleRating extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "root");
-            Statement stmt = con.createStatement();
+        ClientConfig config = new ClientConfig();
 
-            String pet_id = request.getParameter("pet_id");
-            String user_id = request.getParameter("user_id");
-            String stars = request.getParameter("stars");
+        Client client = ClientBuilder.newClient(config);
 
-            String sql = "DELETE FROM `Ratings` WHERE user_id = " + user_id + " AND pet_id = '" + pet_id + "'; ";
-            stmt.executeUpdate(sql);
-            stmt.close();
+        String pet_id = request.getParameter("pet_id");
+        int user_id = Integer.parseInt(request.getParameter("user_id"));
+        int stars = Integer.parseInt(request.getParameter("stars"));
 
-            stmt = con.createStatement();
-            sql = "INSERT INTO `Ratings` VALUES (" + user_id + ", '" + pet_id + "', " + stars + ");";
-            stmt.executeUpdate(sql);
-            stmt.close();
-            con.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+        Rating rating = new Rating();
+        rating.setUser_id(user_id);
+        rating.setPet_id(pet_id);
+        rating.setRating(stars);
+        deleteRating(rating);
+        addRating(rating);
+
+
+//        WebTarget target = client.target(getBaseURI());
+//
+//        String jsonResponse =
+//                target.
+//                        request(). //send a request
+//                        accept(MediaType.APPLICATION_JSON). //specify the media type of the response
+//                        get(String.class); // use the get method and return the response as a string
+
+//        System.out.println(jsonResponse);
+
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
+//                    + "petstore", "root", "root");
+//            Statement stmt = con.createStatement();
+//
+////            String pet_id = request.getParameter("pet_id");
+////            String user_id = request.getParameter("user_id");
+////            String stars = request.getParameter("stars");
+//
+//            String sql = "DELETE FROM `Ratings` WHERE user_id = " + user_id + " AND pet_id = '" + pet_id + "'; ";
+//            stmt.executeUpdate(sql);
+//            stmt.close();
+//
+//            stmt = con.createStatement();
+//            sql = "INSERT INTO `Ratings` VALUES (" + user_id + ", '" + pet_id + "', " + stars + ");";
+//            stmt.executeUpdate(sql);
+//            stmt.close();
+//            con.close();
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public void deleteRating(Rating rating) throws MalformedURLException, ProtocolException {
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.property(ClientProperties.SUPPRESS_HTTP_COMPLIANCE_VALIDATION, true);
+        Client client = ClientBuilder.newClient(clientConfig);
+        WebTarget webTarget
+                = client.target(ENDPOINT);
+        String jsonResponse = webTarget
+                                .request()
+                                .accept(MediaType.TEXT_PLAIN)
+                                .method("DELETE", Entity.entity(rating, MediaType.APPLICATION_JSON))
+                                .toString();
+        System.out.println("delete: " + jsonResponse);
+    }
+
+    public void addRating(Rating rating) {
+        ClientConfig config = new ClientConfig();
+        Client client = ClientBuilder.newClient(config);
+        WebTarget target = client.target(ENDPOINT);
+
+        String jsonResponse =
+                target.
+                        request(MediaType.APPLICATION_JSON). //send a request and specify media type
+                        post(Entity.entity(rating, MediaType.APPLICATION_JSON)).toString(); // use the post method and return the response as a string
+
+        System.out.println("add: " + jsonResponse);
     }
 
     /**

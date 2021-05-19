@@ -33,7 +33,7 @@ public class Last5 extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/"
-                    + "petstore", "root", "anqizhong1999.");
+                    + "petstore", "root", "root");
             Statement stmt = con.createStatement();
             HttpSession session = request.getSession(true);
             String user_id = (session.getAttribute("user_id")).toString();

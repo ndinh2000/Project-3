@@ -18,7 +18,7 @@ public class TaxRef extends HttpServlet {
     //Zip codes follow these rules: http://www.structnet.com/instructions/zip_min_max_by_state.html
     public void init(ServletConfig config) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\azhon\\IdeaProjects\\Project-3\\src\\main\\webapp\\tax_rates2.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ndinh\\Documents\\INF 124 Internet Application Engineering\\Code\\Project 3\\src\\main\\webapp\\tax_rates2.csv"));
             String line = null;
             while ((line = br.readLine()) != null) {
                 String str[] = line.split(",");
