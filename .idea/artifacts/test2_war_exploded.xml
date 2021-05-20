@@ -20,6 +20,7 @@
           <element id="library" level="project" name="Maven: javax.ws.rs:jsr311-api:1.1.1" />
           <element id="library" level="project" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0" />
           <element id="library" level="project" name="Maven: com.eclipsesource.jaxrs:jersey-all:2.22.2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
